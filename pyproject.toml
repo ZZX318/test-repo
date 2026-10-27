@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uav-3d-planner"
+version = "0.1.0"
+description = "Modular 3D multi-UAV path planning with A*, RRT*, guidance and safety metrics"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.23"]
+
+[project.optional-dependencies]
+plot = ["matplotlib>=3.7"]
+torch = ["torch>=2.0"]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.scripts]
+uav3d-demo = "uav_planner.cli:main"
