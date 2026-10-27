@@ -41,7 +41,17 @@ def _cjk(size: float = 9.0, weight: str = "normal"):
     from matplotlib.font_manager import FontProperties
 
     installed = {f.name for f in font_manager.fontManager.ttflist}
-    for family in ("Arial Unicode MS", "Hiragino Sans GB", "STHeiti", "Songti SC"):
+    # macOS 在前，Windows / Linux 的中文字体在后，保证跨平台都有中文可用。
+    for family in (
+        "Arial Unicode MS",
+        "Hiragino Sans GB",
+        "STHeiti",
+        "Songti SC",
+        "Microsoft YaHei",
+        "SimHei",
+        "Noto Sans CJK SC",
+        "WenQuanYi Micro Hei",
+    ):
         if family in installed:
             return FontProperties(family=[family, "DejaVu Sans"], size=size, weight=weight)
     return FontProperties(size=size, weight=weight)
@@ -74,8 +84,16 @@ def _setup_axes(ax, world, title: str):
     ax.set_title(title)
 
 
+def _apply_cjk_rc(plt):
+    """图例 / 标题等未显式指定字体的文本也要能画出中文。"""
+    families = list(_cjk().get_family())
+    plt.rcParams["font.sans-serif"] = families
+    plt.rcParams["axes.unicode_minus"] = False
+
+
 def plot_scenario(world, paths=None, starts=None, goals=None, show: bool = True):
     plt = _plt()
+    _apply_cjk_rc(plt)
     fig = plt.figure(figsize=(10, 8))
     ax = fig.add_subplot(111, projection="3d")
     _draw_obstacles(ax, world)
