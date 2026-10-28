@@ -303,7 +303,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--planner", choices=ALGORITHMS, default="astar")
     p.add_argument("--layout", choices=SCENARIO_LAYOUTS, default="mixed")
     p.add_argument("--seed", type=int, default=7)
-    p.add_argument("--uavs", type=int, default=3)
+    p.add_argument("--uavs", type=int, default=1)
     p.add_argument("--obstacles", type=int, default=12)
     p.add_argument("--resolution", type=float, default=1.0)
     p.add_argument("--shape", type=int, nargs=3, default=(32, 32, 14),
@@ -327,6 +327,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--plot", action="store_true", help="static 3D view of the paths")
     p.add_argument("--lab", action="store_true",
                    help="keyboard laboratory: m switches maps, p switches algorithms")
+    p.add_argument("--dashboard", action="store_true",
+                   help="open the browser based experiment cockpit")
+    p.add_argument("--port", type=int, default=8765,
+                   help="local dashboard port (default: 8765)")
     p.add_argument("--step", action="store_true", help="interactive A* viewer")
     p.add_argument("--animate", action="store_true", help="replay the executed trajectories")
     p.add_argument("--compare", action="store_true", help="A* vs Dijkstra")
@@ -341,6 +345,9 @@ def main(argv=None) -> int:
         return cmd_sweep(args)
     if args.lab:
         return cmd_lab(args)
+    if args.dashboard:
+        from .dashboard import serve
+        return serve(port=args.port)
     if args.compare:
         return cmd_compare(args)
     if args.step:

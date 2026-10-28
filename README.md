@@ -1,6 +1,6 @@
 # UAV 3D Planner
 
-在 AGP-MADDPG 参考工程旁边新建的独立代码包。它把论文中的思路拆成可以单独测试和替换的模块：
+这是围绕论文复现目标整理的独立代码包。它把论文中的思路拆成可以单独测试和替换的模块：
 
 ```text
 voxel world -> 26 邻域多目标 A* / RRT* -> 碰撞感知平滑
@@ -9,9 +9,7 @@ voxel world -> 26 邻域多目标 A* / RRT* -> 碰撞感知平滑
 
 默认规划器是 26 邻域多目标 A*，支持硬净空约束、先规划无人机的路径分离代价、以及连续线段碰撞检查。实验室现在还提供 Dijkstra、Greedy、双向搜索、RRT-Connect 和 RRT*，所有算法都用同一个结果接口，方便在同一张地图上比较。
 
-> **`refs/` 里放了一份从网上原样下载的第三方开源工程**（`zhm-real/PathPlanning`，MIT，含真正的三维 A\* / D\* Lite / BIT\* / RRT\* 实现），用来对照"上游的算法演示"和"我们的工程实现"差在哪。详见 [`refs/README.md`](refs/README.md)。它不是我们的代码，`uav_planner/` 也不 import 它。
 >
-> 想先看看上游代码跑出来什么样：`python refs/run_ref.py Search_3D/Astar3D.py`（任意 python 都行，会自动切到 `.venv`），或直接看已经生成好的 `refs/preview/Astar3D.png`。
 
 ---
 
@@ -19,7 +17,8 @@ voxel world -> 26 邻域多目标 A* / RRT* -> 碰撞感知平滑
 
 | 我想…… | 命令 |
 | --- | --- |
-| 打开可切换的实验室 | `python main.py`（不带参数 = `--lab`） |
+| 打开实验驾驶舱（推荐） | `python main.py`（不带参数 = `--dashboard`） |
+| 打开旧版键盘实验室 | `python main.py --lab` |
 | 看 A\* 一步步怎么扩展（实时显示 g/h/f） | `python -m uav_planner.cli --step` |
 | 看最终几条路径长什么样 | `python -m uav_planner.cli --plot` |
 | 看无人机沿路径飞的过程 | `python -m uav_planner.cli --animate` |
@@ -87,8 +86,10 @@ voxel world -> 26 邻域多目标 A* / RRT* -> 碰撞感知平滑
    python -m pip install -r requirements.txt
    ```
 
-3. `Cmd+Shift+P` → `Python: Select Interpreter` → 选 `.venv/bin/python`。
-4. 打开根目录 `main.py` 点运行按钮或按 `F5`：**无参数时直接进入交互式 A\* 单步视图**。
+3. `Ctrl+Shift+P` → `Python: Select Interpreter` → 选 `.venv\\Scripts\\python.exe`。
+4. 打开根目录 `main.py` 点运行按钮或按 `F5`：**无参数时直接打开实验驾驶舱**。
+
+驾驶舱只服务于本目录的 `uav_planner/`，参考代码目录不会参与默认运行。左侧选择地图、算法、无人机数量、障碍密度和硬净空，点击一次即可同时查看三维路径、执行轨迹、规划层/执行层指标。拖动画布旋转视角，滚轮缩放。
 
 ### 交互视图按键
 
@@ -161,7 +162,7 @@ python -m uav_planner.cli --json          # 机器可读输出
 | 4 | `urban` | 不同高度的城市建筑块 |
 | 5 | `forest` | 走廊附近高密度球形障碍 |
 | 6 | `maze` | 交替墙体形成的三维迷宫 |
-| 7 | `reference` | 根据 `refs/PathPlanning/Search_3D/env3D.py` 整理的基准地图 |
+| 7 | `reference` | 论文参考风格的基准地图 |
 
 按 `p` 会依次切换：
 

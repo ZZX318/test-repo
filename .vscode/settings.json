@@ -2,13 +2,7 @@
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
   "python.terminal.executeInFileDir": true,
   "python.analysis.extraPaths": [
-    "${workspaceFolder}",
-    "${workspaceFolder}/refs/PathPlanning/Search_based_Planning",
-    "${workspaceFolder}/refs/PathPlanning/Sampling_based_Planning",
-    "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_3D",
-    "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_2D",
-    "${workspaceFolder}/refs/PathPlanning/Sampling_based_Planning/rrt_3D",
-    "${workspaceFolder}/refs/PathPlanning/Sampling_based_Planning/rrt_2D"
+    "${workspaceFolder}"
   ],
   "python.analysis.diagnosticSeverityOverrides": {
     "reportMissingImports": "warning"
@@ -16,8 +10,5 @@
   "files.exclude": {
     "**/__pycache__": true,
     "**/*.pyc": true
-  },
-  "search.exclude": {
-    "refs/PathPlanning/**/gif": true
   }
 }

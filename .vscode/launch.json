@@ -2,7 +2,39 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "refs: 杩愯褰撳墠鎵撳紑鐨?.py",
+      "name": "UAV 3D Planner · 实验驾驶舱",
+      "type": "python",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "program": "${workspaceFolder}/main.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "UAV 3D Planner · 命令行实验",
+      "type": "python",
+      "request": "launch",
+      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "program": "${workspaceFolder}/main.py",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--planner",
+        "astar",
+        "--layout",
+        "mixed",
+        "--seed",
+        "7",
+        "--uavs",
+        "3",
+        "--obstacles",
+        "12"
+      ]
+    },
+    {
+      "name": "运行当前打开的 .py",
       "type": "python",
       "request": "launch",
       "python": "${workspaceFolder}/.venv/Scripts/python.exe",
@@ -12,44 +44,36 @@
       "justMyCode": false
     },
     {
-      "name": "refs: 3D A* (Astar3D.py)",
-      "type": "python",
-      "request": "launch",
-      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
-      "program": "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_3D/Astar3D.py",
-      "cwd": "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_3D",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    },
-    {
-      "name": "refs: 2D A* (Astar.py)",
-      "type": "python",
-      "request": "launch",
-      "python": "${workspaceFolder}/.venv/Scripts/python.exe",
-      "program": "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_2D/Astar.py",
-      "cwd": "${workspaceFolder}/refs/PathPlanning/Search_based_Planning/Search_2D",
-      "console": "integratedTerminal",
-      "justMyCode": false
-    },
-    {
-      "name": "A* 浜や簰鍗曟 (step)",
+      "name": "A* 交互单步 (step)",
       "type": "python",
       "request": "launch",
       "python": "${workspaceFolder}/.venv/Scripts/python.exe",
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--step", "--seed", "7"]
+      "args": [
+        "--step",
+        "--seed",
+        "7"
+      ]
     },
     {
-      "name": "UAV 3D 瀹為獙瀹?(鎸?m/p 鍒囨崲)",
+      "name": "UAV 3D 实验室 (按 m/p 切换)",
       "type": "python",
       "request": "launch",
       "python": "${workspaceFolder}/.venv/Scripts/python.exe",
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--lab", "--seed", "7", "--uavs", "3", "--obstacles", "12"]
+      "args": [
+        "--lab",
+        "--seed",
+        "7",
+        "--uavs",
+        "3",
+        "--obstacles",
+        "12"
+      ]
     },
     {
       "name": "UAV 3D Planner Demo (plot)",
@@ -59,17 +83,30 @@
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--planner", "astar", "--seed", "7", "--uavs", "3", "--obstacles", "12", "--plot"]
+      "args": [
+        "--planner",
+        "astar",
+        "--seed",
+        "7",
+        "--uavs",
+        "3",
+        "--obstacles",
+        "12",
+        "--plot"
+      ]
     },
     {
-      "name": "闅滅鏁版壂鎻?0/12/40 (sweep)",
+      "name": "障碍数扫描 0/12/40 (sweep)",
       "type": "python",
       "request": "launch",
       "python": "${workspaceFolder}/.venv/Scripts/python.exe",
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--sweep", "0,12,40"]
+      "args": [
+        "--sweep",
+        "0,12,40"
+      ]
     },
     {
       "name": "A* vs Dijkstra (compare)",
@@ -79,17 +116,27 @@
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--compare", "--seed", "7"]
+      "args": [
+        "--compare",
+        "--seed",
+        "7"
+      ]
     },
     {
-      "name": "杞ㄨ抗鍥炴斁 (animate)",
+      "name": "轨迹回放 (animate)",
       "type": "python",
       "request": "launch",
       "python": "${workspaceFolder}/.venv/Scripts/python.exe",
       "program": "${workspaceFolder}/main.py",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
-      "args": ["--animate", "--seed", "7", "--uavs", "3"]
+      "args": [
+        "--animate",
+        "--seed",
+        "7",
+        "--uavs",
+        "3"
+      ]
     }
   ]
 }

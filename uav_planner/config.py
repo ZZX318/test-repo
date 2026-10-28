@@ -102,7 +102,7 @@ class ScenarioConfig:
     """
 
     seed: int = 7
-    n_uavs: int = 3
+    n_uavs: int = 1
     n_obstacles: int = 12
     n_walls: Optional[int] = None
     obstacle_radius: Tuple[float, float] = (1.5, 3.0)
